@@ -19,31 +19,29 @@ Icon files (iOS 5)里面创建一个CFBundleAlternateIcons，类型为Dictionary
 
 ~~~
 - (IBAction)setIconClick:(UIButton *)sender {
-[self setIconName:nil];//nil表示换回原始Icon
+    [self setIconName:nil];//nil表示换回原始Icon
 }
+
 - (IBAction)setIcon1Click:(id)sender {
-[self setIconName:@"Icon1"];
+    [self setIconName:@"Icon1"];
 }
+
 - (IBAction)setIcon2Click:(id)sender {
-[self setIconName:@"Icon2"];
+    [self setIconName:@"Icon2"];
 }
+
 - (void)setIconName:(NSString *)name {
 UIApplication *application = [UIApplication sharedApplication];
-~~~
-
 //先判断设备支不支持“AlternateIcons”
-
-~~~
 if ([application supportsAlternateIcons]) {
-
 //这里的IconName必须在Info.plist里定义，具体格式看Info.plist
-[application setAlternateIconName:name completionHandler:^(NSError * _Nullable error) {
-if (error) {
-NSLog(@"error => %@", error.localizedDescription);
-} else {
-NSLog(@"done!");
-}
-}];
+    [application setAlternateIconName:name completionHandler:^(NSError * _Nullable error) {
+    if (error) {
+        NSLog(@"error => %@", error.localizedDescription);
+    } else {
+        NSLog(@"done!");
+    }
+  }];
 }
 }
 ~~~
